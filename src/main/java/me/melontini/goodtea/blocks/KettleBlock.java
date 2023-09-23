@@ -53,7 +53,7 @@ public class KettleBlock extends BlockWithEntity {
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, KETTLE_BLOCK_ENTITY, KettleBlockEntity::tick);
+        return validateTicker(type, KETTLE_BLOCK_ENTITY, KettleBlockEntity::tick);
     }
 
     @Override

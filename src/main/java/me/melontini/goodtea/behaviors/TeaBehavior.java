@@ -311,8 +311,10 @@ public class TeaBehavior {
             if (item instanceof BlockItem blockItem) {
                 if (blockItem.getBlock() instanceof FlowerBlock flowerBlock) {
                     addBehavior(item, (entity, stack) -> {
-                        StatusEffectInstance effectInstance = new StatusEffectInstance(flowerBlock.getEffectInStew(), flowerBlock.getEffectInStew().isInstant() ? flowerBlock.getEffectInStewDuration() : (flowerBlock.getEffectInStewDuration() * 2));
-                        entity.addStatusEffect(effectInstance);
+                        for (SuspiciousStewIngredient.StewEffect stewEffect : flowerBlock.getStewEffects()) {
+                            StatusEffectInstance effectInstance = new StatusEffectInstance(stewEffect.effect(), stewEffect.effect().isInstant() ? stewEffect.duration() : (stewEffect.duration() * 2));
+                            entity.addStatusEffect(effectInstance);
+                        }
                     });
                 }
                 if (blockItem.getBlock() instanceof BedBlock) {
